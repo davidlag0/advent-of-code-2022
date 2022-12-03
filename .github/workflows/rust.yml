@@ -1,0 +1,81 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+
+env:
+  RUST_TOOLCHAIN: stable
+  TOOLCHAIN_PROFILE: minimal
+
+jobs:
+  lints:
+    name: Run cargo fmt and cargo clippy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+      - name: Install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: ${{ env.TOOLCHAIN_PROFILE }}
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+          override: true
+          components: rustfmt, clippy
+      - name: Cache
+        uses: Swatinem/rust-cache@v2
+      - name: Run cargo fmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+      - name: Run cargo clippy
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --all-targets -- -D warnings
+
+  test:
+    name: Run cargo test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+      - name: Install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: ${{ env.TOOLCHAIN_PROFILE }}
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+          override: true
+      - name: Cache
+        uses: Swatinem/rust-cache@v2
+      - name: Run cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+  codecov:
+    name: Report code coverage
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v3
+    - name: Install toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: nightly
+        override: true
+        components: llvm-tools-preview
+    - name: Calculate code coverage (Runs cargo with defaults flags, using the default `lcov` output)
+      uses: Swatinem/fucov@v1
+    - name: Upload code coverage report to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: coverage
