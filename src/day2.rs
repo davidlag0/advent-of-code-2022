@@ -44,21 +44,32 @@ Now that you're correctly decrypting the ultra top secret strategy guide, you wo
 Following the Elf's instructions for the second column, what would your total score be if everything goes exactly according to your strategy guide?
 */
 
+enum OurShape {
+    Rock = 1,
+    Paper = 2,
+    Scissors = 3,
+}
+
+enum Outcome {
+    Loss = 0,
+    Draw = 3,
+    Win = 6,
+}
+
 pub fn part1(input: &str) -> Result<i64, &'static str> {
     let mut total_score: i64 = 0;
 
     for line in input.split('\n') {
         total_score += match line {
-            "A X" => 1 + 3,
-            "A Y" => 2 + 6,
-            "A Z" => 3, // 3 + 0
-            "B X" => 1, // 1 + 0
-            "B Y" => 2 + 3,
-            "B Z" => 3 + 6,
-            "C X" => 1 + 6,
-            "C Y" => 2, // 2 + 0
-            "C Z" => 3 + 3,
-            _ => 0,
+            "A X" => OurShape::Rock as i64 + Outcome::Draw as i64,
+            "A Y" => OurShape::Paper as i64 + Outcome::Win as i64,
+            "A Z" => OurShape::Scissors as i64 + Outcome::Loss as i64,
+            "B X" => OurShape::Rock as i64 + Outcome::Loss as i64,
+            "B Y" => OurShape::Paper as i64 + Outcome::Draw as i64,
+            "B Z" => OurShape::Scissors as i64 + Outcome::Win as i64,
+            "C X" => OurShape::Rock as i64 + Outcome::Win as i64,
+            "C Y" => OurShape::Paper as i64 + Outcome::Loss as i64,
+            "C Z" => OurShape::Scissors as i64 + Outcome::Draw as i64,
         };
     }
 
@@ -70,16 +81,15 @@ pub fn part2(input: &str) -> Result<i64, &'static str> {
 
     for line in input.split('\n') {
         total_score += match line {
-            "A X" => 3, // 3 + 0
-            "A Y" => 1 + 3,
-            "A Z" => 2 + 6,
-            "B X" => 1, // 1 + 0
-            "B Y" => 2 + 3,
-            "B Z" => 3 + 6,
-            "C X" => 2, // 2 + 0
-            "C Y" => 3 + 3,
-            "C Z" => 1 + 6,
-            _ => 0,
+            "A X" => OurShape::Scissors as i64 + Outcome::Loss as i64,
+            "A Y" => OurShape::Rock as i64 + Outcome::Draw as i64,
+            "A Z" => OurShape::Paper as i64 + Outcome::Win as i64,
+            "B X" => OurShape::Rock as i64 + Outcome::Loss as i64,
+            "B Y" => OurShape::Paper as i64 + Outcome::Draw as i64,
+            "B Z" => OurShape::Scissors as i64 + Outcome::Win as i64,
+            "C X" => OurShape::Paper as i64 + Outcome::Loss as i64,
+            "C Y" => OurShape::Scissors as i64 + Outcome::Draw as i64,
+            "C Z" => OurShape::Rock as i64 + Outcome::Win as i64,
         };
     }
 
