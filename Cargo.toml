@@ -12,3 +12,4 @@ name = "aoc_rust_2022"
 path = "src/lib.rs"
 
 [dependencies]
+clap = { version = "4.0.29", features = ["derive"] }
