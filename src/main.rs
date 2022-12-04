@@ -25,7 +25,9 @@ fn load_file(filename: PathBuf) -> std::string::String {
     fs::read_to_string(filename).unwrap()
 }
 
-fn solve(day: u8, part: u8) -> Result<fn(&str) -> Result<i64, &'static str>, (u8, u8)> {
+type SolverFn = fn(&str) -> Result<i64, &'static str>;
+
+fn solve(day: u8, part: u8) -> Result<SolverFn, (u8, u8)> {
     match (day, part) {
         (1, 1) => Ok(day1::part1),
         (1, 2) => Ok(day1::part2),
