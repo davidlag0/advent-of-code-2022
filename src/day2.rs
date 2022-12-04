@@ -136,19 +136,25 @@ mod tests {
 B X
 C Z";
 
-    static TEST_INPUT_BAD: &str = "G H
+    static TEST_INPUT_ALL_BAD: &str = "G H
 I O
+K P";
+
+    static TEST_INPUT_PARTIALLY_BAD: &str = "G H
+A Y
 K P";
 
     #[test]
     fn test_part1() {
         assert_eq!(part1(TEST_INPUT), Ok(15));
-        assert_eq!(part1(TEST_INPUT_BAD), Ok(0));
+        assert_eq!(part1(TEST_INPUT_ALL_BAD), Ok(0));
+        assert_eq!(part1(TEST_INPUT_PARTIALLY_BAD), Ok(8));
     }
 
     #[test]
     fn test_part2() {
         assert_eq!(part2(TEST_INPUT), Ok(12));
-        assert_eq!(part2(TEST_INPUT_BAD), Ok(0));
+        assert_eq!(part2(TEST_INPUT_ALL_BAD), Ok(0));
+        assert_eq!(part1(TEST_INPUT_PARTIALLY_BAD), Ok(8));
     }
 }
