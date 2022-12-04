@@ -59,7 +59,7 @@ enum Outcome {
 pub fn part1(input: &str) -> Result<i64, &'static str> {
     let mut total_score: i64 = 0;
 
-    for line in input.split('\n') {
+    for line in input.lines() {
         total_score += match line {
             "A X" => OurShape::Rock as i64 + Outcome::Draw as i64,
             "A Y" => OurShape::Paper as i64 + Outcome::Win as i64,
@@ -70,6 +70,13 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
             "C X" => OurShape::Rock as i64 + Outcome::Win as i64,
             "C Y" => OurShape::Paper as i64 + Outcome::Loss as i64,
             "C Z" => OurShape::Scissors as i64 + Outcome::Draw as i64,
+            _ => {
+                println!(
+                    "Unsupported line: '{}'. Using a score of 0 for this line.",
+                    line
+                );
+                0
+            }
         };
     }
 
@@ -79,7 +86,7 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
 pub fn part2(input: &str) -> Result<i64, &'static str> {
     let mut total_score: i64 = 0;
 
-    for line in input.split('\n') {
+    for line in input.lines() {
         total_score += match line {
             "A X" => OurShape::Scissors as i64 + Outcome::Loss as i64,
             "A Y" => OurShape::Rock as i64 + Outcome::Draw as i64,
@@ -90,6 +97,13 @@ pub fn part2(input: &str) -> Result<i64, &'static str> {
             "C X" => OurShape::Paper as i64 + Outcome::Loss as i64,
             "C Y" => OurShape::Scissors as i64 + Outcome::Draw as i64,
             "C Z" => OurShape::Rock as i64 + Outcome::Win as i64,
+            _ => {
+                println!(
+                    "Unsupported line: '{}'. Using a score of 0 for this line.",
+                    line
+                );
+                0
+            }
         };
     }
 
