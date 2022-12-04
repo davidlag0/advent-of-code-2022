@@ -83,6 +83,24 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
     Ok(total_score)
 }
 
+/*
+impl From<Move> for u32 {
+    /// Converts the given `Move` into its score value.
+    ///
+    fn from(value: Move) -> Self {
+        match value {
+            Move::Rock => 1,
+            Move::Paper => 2,
+            Move::Scissor => 3,
+        }
+    }
+}
+
+I could have used this too. I would have first needed to split the string
+and convert each letter to an enum value, then use the above code to convert
+back the enum value to a numeric value to be used to calculate the score.
+*/
+
 pub fn part2(input: &str) -> Result<i64, &'static str> {
     let mut total_score: i64 = 0;
 
