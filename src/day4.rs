@@ -146,7 +146,7 @@ mod tests {
 
     #[test]
     fn test_is_one_pair_fully_within_other_pair() {
-        assert!(is_one_pair_fully_within_other_pair(vec![1, 2, 3, 4, 5]))
+        assert!(!is_one_pair_fully_within_other_pair(vec![1, 2, 3, 4, 5]))
     }
 
     #[test]
