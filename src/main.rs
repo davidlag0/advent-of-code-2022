@@ -22,8 +22,16 @@ struct Cli {
     part: u8,
 }
 
-fn load_file(filename: PathBuf) -> std::string::String {
-    fs::read_to_string(filename).unwrap()
+fn load_file(filename: PathBuf) -> Option<std::string::String> {
+    let input_filename = filename.as_path().display().to_string();
+
+    match fs::read_to_string(filename) {
+        Ok(path) => Some(path),
+        Err(err) => {
+            println!("Could not load input file '{}'. {}", input_filename, err);
+            None
+        }
+    }
 }
 
 type SolverFn = fn(&str) -> Result<i64, &'static str>;
@@ -52,25 +60,27 @@ fn main() {
         .iter()
         .collect();
 
-    match solve(cli.day, cli.part) {
-        Ok(solve_function) => {
-            chrono_start = Instant::now();
-            solution_result = solve_function(&load_file(day_input));
-            chrono_stop = chrono_start.elapsed().as_micros();
-            total_time += chrono_stop;
+    if let Some(puzzle_input) = load_file(day_input) {
+        match solve(cli.day, cli.part) {
+            Ok(solve_function) => {
+                chrono_start = Instant::now();
+                solution_result = solve_function(&puzzle_input);
+                chrono_stop = chrono_start.elapsed().as_micros();
+                total_time += chrono_stop;
 
-            match solution_result {
-                Ok(solution) => println!(
-                    "Solution of Day {}, Part {}: {:?}, Time: {}μs",
-                    cli.day, cli.part, solution, chrono_stop
-                ),
-                Err(error) => println!(
-                    "A problem occured to solve the problem of Day {}, Part {}: {}, Time: {}μs",
-                    cli.day, cli.part, error, chrono_stop
-                ),
+                match solution_result {
+                    Ok(solution) => println!(
+                        "Solution of Day {}, Part {}: {}, Time: {}μs",
+                        cli.day, cli.part, solution, chrono_stop
+                    ),
+                    Err(error) => println!(
+                        "A problem occured to solve the problem of Day {}, Part {}: {}, Time: {}μs",
+                        cli.day, cli.part, error, chrono_stop
+                    ),
+                }
+                println!("\nTotal Time: {}μs", total_time);
             }
-            println!("\nTotal Time: {}μs", total_time);
+            Err(_) => println!("Unsupported day {} and part {}", cli.day, cli.part),
         }
-        Err(_) => println!("Unsupported day {} and part {}", cli.day, cli.part),
     }
 }
