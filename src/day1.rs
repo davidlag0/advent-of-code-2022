@@ -64,7 +64,7 @@ pub fn calculate_top_three(temporary_sum: i64, top_three: &mut Vec<i64>) -> &mut
     top_three
 }
 
-pub fn part1(input: &str) -> Result<i64, &'static str> {
+pub fn part1(input: &str) -> Result<String, &'static str> {
     let mut temporary_sum: i64 = 0;
     let mut highest_sum: i64 = 0;
 
@@ -83,10 +83,10 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
         }
     }
 
-    Ok(highest_sum)
+    Ok(highest_sum.to_string())
 }
 
-pub fn part2(input: &str) -> Result<i64, &'static str> {
+pub fn part2(input: &str) -> Result<String, &'static str> {
     let mut temporary_sum: i64 = 0;
     let mut top_three: Vec<i64> = vec![0, 0, 0];
 
@@ -105,7 +105,8 @@ pub fn part2(input: &str) -> Result<i64, &'static str> {
 
     Ok(calculate_top_three(temporary_sum, &mut top_three)
         .iter()
-        .sum())
+        .sum::<i64>()
+        .to_string())
 }
 
 #[cfg(test)]
@@ -137,12 +138,12 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(TEST_INPUT), Ok(24000));
+        assert_eq!(part1(TEST_INPUT), Ok(24000.to_string()));
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(TEST_INPUT), Ok(45000));
-        assert_eq!(part2(TEST_INPUT_2), Ok(19000));
+        assert_eq!(part2(TEST_INPUT), Ok(45000.to_string()));
+        assert_eq!(part2(TEST_INPUT_2), Ok(19000.to_string()));
     }
 }

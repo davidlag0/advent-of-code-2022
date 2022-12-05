@@ -35,7 +35,7 @@ fn load_file(filename: PathBuf) -> Option<std::string::String> {
     }
 }
 
-type SolverFn = fn(&str) -> Result<i64, &'static str>;
+type SolverFn = fn(&str) -> Result<String, &'static str>;
 
 fn solve(day: u8, part: u8) -> Result<SolverFn, (u8, u8)> {
     match (day, part) {

@@ -56,7 +56,7 @@ enum Outcome {
     Win = 6,
 }
 
-pub fn part1(input: &str) -> Result<i64, &'static str> {
+pub fn part1(input: &str) -> Result<String, &'static str> {
     let mut total_score: i64 = 0;
 
     for line in input.lines() {
@@ -80,7 +80,7 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
         };
     }
 
-    Ok(total_score)
+    Ok(total_score.to_string())
 }
 
 /*
@@ -101,7 +101,7 @@ and convert each letter to an enum value, then use the above code to convert
 back the enum value to a numeric value to be used to calculate the score.
 */
 
-pub fn part2(input: &str) -> Result<i64, &'static str> {
+pub fn part2(input: &str) -> Result<String, &'static str> {
     let mut total_score: i64 = 0;
 
     for line in input.lines() {
@@ -125,7 +125,7 @@ pub fn part2(input: &str) -> Result<i64, &'static str> {
         };
     }
 
-    Ok(total_score)
+    Ok(total_score.to_string())
 }
 
 #[cfg(test)]
@@ -146,15 +146,15 @@ K P";
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(TEST_INPUT), Ok(15));
-        assert_eq!(part1(TEST_INPUT_ALL_BAD), Ok(0));
-        assert_eq!(part1(TEST_INPUT_PARTIALLY_BAD), Ok(8));
+        assert_eq!(part1(TEST_INPUT), Ok(15.to_string()));
+        assert_eq!(part1(TEST_INPUT_ALL_BAD), Ok(0.to_string()));
+        assert_eq!(part1(TEST_INPUT_PARTIALLY_BAD), Ok(8.to_string()));
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(TEST_INPUT), Ok(12));
-        assert_eq!(part2(TEST_INPUT_ALL_BAD), Ok(0));
-        assert_eq!(part1(TEST_INPUT_PARTIALLY_BAD), Ok(8));
+        assert_eq!(part2(TEST_INPUT), Ok(12.to_string()));
+        assert_eq!(part2(TEST_INPUT_ALL_BAD), Ok(0.to_string()));
+        assert_eq!(part1(TEST_INPUT_PARTIALLY_BAD), Ok(8.to_string()));
     }
 }

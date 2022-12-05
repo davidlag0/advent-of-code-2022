@@ -89,7 +89,7 @@ fn is_one_pair_fully_within_other_pair(sections_min_and_max: Vec<u8>) -> bool {
     }
 }
 
-pub fn part1(input: &str) -> Result<i64, &'static str> {
+pub fn part1(input: &str) -> Result<String, &'static str> {
     let mut assignment_pairs_fully_in_another: i64 = 0;
 
     for line in input.lines() {
@@ -100,7 +100,7 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
         }
     }
 
-    Ok(assignment_pairs_fully_in_another)
+    Ok(assignment_pairs_fully_in_another.to_string())
 }
 
 fn is_one_pair_overlapping_other_pair(sections_min_and_max: Vec<u8>) -> bool {
@@ -119,7 +119,7 @@ fn is_one_pair_overlapping_other_pair(sections_min_and_max: Vec<u8>) -> bool {
         .is_some()
 }
 
-pub fn part2(input: &str) -> Result<i64, &'static str> {
+pub fn part2(input: &str) -> Result<String, &'static str> {
     let mut number_of_overlapping_pairs: i64 = 0;
 
     for line in input.lines() {
@@ -130,7 +130,7 @@ pub fn part2(input: &str) -> Result<i64, &'static str> {
         }
     }
 
-    Ok(number_of_overlapping_pairs)
+    Ok(number_of_overlapping_pairs.to_string())
 }
 
 #[cfg(test)]
@@ -151,11 +151,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(TEST_INPUT), Ok(2));
+        assert_eq!(part1(TEST_INPUT), Ok(2.to_string()));
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(TEST_INPUT), Ok(4));
+        assert_eq!(part2(TEST_INPUT), Ok(4.to_string()));
     }
 }

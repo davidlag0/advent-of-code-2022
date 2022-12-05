@@ -73,7 +73,7 @@ fn get_item_type_priority(item_type: &char) -> u8 {
     }
 }
 
-pub fn part1(input: &str) -> Result<i64, &'static str> {
+pub fn part1(input: &str) -> Result<String, &'static str> {
     let mut sum_of_priorities: i64 = 0;
 
     for line in input.lines() {
@@ -90,7 +90,7 @@ pub fn part1(input: &str) -> Result<i64, &'static str> {
         sum_of_priorities += get_item_type_priority(shared_item_type[0]) as i64;
     }
 
-    Ok(sum_of_priorities)
+    Ok(sum_of_priorities.to_string())
 }
 
 fn get_intersection(group: &mut Vec<HashSet<char>>) -> Option<char> {
@@ -112,7 +112,7 @@ fn get_intersection(group: &mut Vec<HashSet<char>>) -> Option<char> {
     }
 }
 
-pub fn part2(input: &str) -> Result<i64, &'static str> {
+pub fn part2(input: &str) -> Result<String, &'static str> {
     let mut sum_of_priorities: i64 = 0;
     let mut list_of_group_item_types: Vec<HashSet<char>> = Vec::new();
 
@@ -128,7 +128,7 @@ pub fn part2(input: &str) -> Result<i64, &'static str> {
         }
     }
 
-    Ok(sum_of_priorities)
+    Ok(sum_of_priorities.to_string())
 }
 
 #[cfg(test)]
@@ -169,11 +169,11 @@ CrZsJsPPZsGzwwsLwLmpwMDw";
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(TEST_INPUT), Ok(157));
+        assert_eq!(part1(TEST_INPUT), Ok(157.to_string()));
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(TEST_INPUT), Ok(70));
+        assert_eq!(part2(TEST_INPUT), Ok(70.to_string()));
     }
 }
