@@ -13,3 +13,4 @@ path = "src/lib.rs"
 
 [dependencies]
 clap = { version = "4.0.29", features = ["derive"] }
+regex = "1.7.0"
