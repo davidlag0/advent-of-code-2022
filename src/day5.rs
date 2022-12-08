@@ -110,7 +110,7 @@ Before the rearrangement process finishes, update your simulation so that the El
 use regex::Regex;
 use std::collections::VecDeque;
 
-fn solve(input: &str, group_crates_when_moving: bool) -> String {
+fn solve(input: &str, group_crates_when_moving: bool) -> Result<String, &'static str> {
     let re_stacks = Regex::new(r"(?:\[|\s)(?P<crate>[A-Z]|\s)(?:\]|\s)\s?").unwrap();
     let re_move = Regex::new(r"^move\s(?P<number_of_crates_to_move>\d+)\sfrom\s(?P<from_stack>\d+)\sto\s(?P<to_stack>\d+)$").unwrap();
     let mut number_of_stacks: usize = 0;
@@ -123,7 +123,7 @@ fn solve(input: &str, group_crates_when_moving: bool) -> String {
 
             if number_of_stacks == 0 {
                 match matches.len() {
-                    0 => return "".to_string(),
+                    0 => return Err("Unknown format for stacks"),
                     other => number_of_stacks += other,
                 }
 
@@ -184,15 +184,15 @@ fn solve(input: &str, group_crates_when_moving: bool) -> String {
         }
     }
 
-    crates_at_the_top
+    Ok(crates_at_the_top)
 }
 
 pub fn part1(input: &str) -> Result<String, &'static str> {
-    Ok(solve(input, false))
+    solve(input, false)
 }
 
 pub fn part2(input: &str) -> Result<String, &'static str> {
-    Ok(solve(input, true))
+    solve(input, true)
 }
 
 #[cfg(test)]
