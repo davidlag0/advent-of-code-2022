@@ -210,7 +210,7 @@ move 2 from 2 to 1
 move 1 from 1 to 2
 ";
 
-    static TEST_INPUT_BAD: &str = "    [D]    
+    static TEST_INPUT_BAD_MOVE: &str = "    [D]    
 [N] [C]    
 [Z] [M] [P]
  1   2   3 
@@ -221,14 +221,30 @@ move 2 from 2 to 1
 move abc from 1 to 2
 ";
 
+    static TEST_INPUT_BAD_STACKS: &str = "aaaaaaaaaaa
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
+
+move 1 from 2 to 1
+move 3 from 1 to 3
+move 2 from 2 to 1
+move 1 from 1 to 2
+";
+
     #[test]
     fn test_part1() {
         assert_eq!(part1(TEST_INPUT), Ok(String::from("CMZ")));
     }
 
     #[test]
-    fn test_part1_bad_input() {
-        assert_eq!(part1(TEST_INPUT_BAD), Ok(String::from("MZ")));
+    fn test_part1_bad_move() {
+        assert_eq!(part1(TEST_INPUT_BAD_MOVE), Ok(String::from("MZ")));
+    }
+
+    #[test]
+    fn test_part1_bad_stacks() {
+        assert_eq!(part1(TEST_INPUT_BAD_STACKS), Ok("".to_string()))
     }
 
     #[test]
