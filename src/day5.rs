@@ -122,18 +122,19 @@ fn solve(input: &str, group_crates_when_moving: bool) -> String {
             let matches: Vec<_> = re_stacks.captures_iter(line).collect();
 
             if number_of_stacks == 0 {
-                number_of_stacks = matches.len();
+                match matches.len() {
+                    0 => return "".to_string(),
+                    other => number_of_stacks += other,
+                }
 
                 for _ in 0..number_of_stacks {
                     stacks.push(VecDeque::new());
                 }
             }
 
-            if number_of_stacks > 0 {
-                for (index, cap) in matches.iter().enumerate() {
-                    if &cap["crate"] != " " {
-                        stacks[index].push_back(String::from(&cap["crate"]));
-                    }
+            for (index, cap) in matches.iter().enumerate() {
+                if &cap["crate"] != " " {
+                    stacks[index].push_back(String::from(&cap["crate"]));
                 }
             }
         } else {
