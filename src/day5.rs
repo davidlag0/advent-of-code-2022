@@ -244,7 +244,10 @@ move 1 from 1 to 2
 
     #[test]
     fn test_part1_bad_stacks() {
-        assert_eq!(part1(TEST_INPUT_BAD_STACKS), Ok("".to_string()))
+        assert_eq!(
+            part1(TEST_INPUT_BAD_STACKS),
+            Err("Unknown format for stacks")
+        )
     }
 
     #[test]
