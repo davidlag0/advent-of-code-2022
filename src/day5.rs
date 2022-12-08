@@ -234,12 +234,12 @@ move 1 from 1 to 2
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(TEST_INPUT), Ok(String::from("CMZ")));
+        assert_eq!(part1(TEST_INPUT), Ok("CMZ".to_string()));
     }
 
     #[test]
     fn test_part1_bad_move() {
-        assert_eq!(part1(TEST_INPUT_BAD_MOVE), Ok(String::from("MZ")));
+        assert_eq!(part1(TEST_INPUT_BAD_MOVE), Ok("MZ".to_string()));
     }
 
     #[test]
@@ -249,6 +249,6 @@ move 1 from 1 to 2
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(TEST_INPUT), Ok(String::from("MCD")));
+        assert_eq!(part2(TEST_INPUT), Ok("MCD".to_string()));
     }
 }
