@@ -9,6 +9,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 #[derive(Parser)]
 #[command(name = "advent-of-code-2022")]
@@ -53,6 +54,8 @@ fn solve(day: u8, part: u8) -> Result<SolverFn, (u8, u8)> {
         (5, 2) => Ok(day5::part2),
         (6, 1) => Ok(day6::part1),
         (6, 2) => Ok(day6::part2),
+        (7, 1) => Ok(day7::part1),
+        (7, 2) => Ok(day7::part2),
         (_, _) => Err((day, part)),
     }
 }
