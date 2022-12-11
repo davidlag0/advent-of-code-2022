@@ -310,6 +310,9 @@ bad_file_size b.txt
 8504156 c.dat
 ";
 
+    static TEST_INPUT_EMPTY_FILESYSTEM: &str = "$ ls
+";
+
     #[test]
     fn test_build_filesystem() {
         assert_eq!(
@@ -430,6 +433,14 @@ bad_file_size b.txt
         assert_eq!(
             part2(TEST_INPUT_DIR_COMMAND_AND_NO_CURRENT_DIRECTORY),
             Err("Could not find item: ".to_string())
+        );
+    }
+
+    #[test]
+    fn test_part2_empty_filesystem() {
+        assert_eq!(
+            part2(TEST_INPUT_EMPTY_FILESYSTEM),
+            Err("Problem with the filesystem disk space! The expectation is to have just enough free space to the upgrade or less".to_string())
         );
     }
 }
