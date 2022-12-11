@@ -152,6 +152,9 @@ fn build_filesystem(input: &str) -> Result<HashMap<String, Directory>, String> {
     let mut filesystem: HashMap<String, Directory> = HashMap::new();
 
     for line in input.lines() {
+        // Idea for the command and 'match command' below taken from:
+        // https://github.com/orlp/aoc2022/blob/master/src/bin/day07.rs#L34-L46
+
         let mut command = Vec::with_capacity(3);
         command.splice(.., line.split_ascii_whitespace());
 
@@ -252,6 +255,9 @@ pub fn part2(input: &str) -> Result<String, String> {
         calculation panics with an overflow because we get a negative number.
         Unfortunately, code coverage doesn't seem to be able to ignore the below
         line not being covered.
+
+        Reference to ignore lines from code coverage (not stable yet as of 2022-12-11):
+        https://doc.rust-lang.org/unstable-book/language-features/no-coverage.html
          */
         None => unreachable!(),
     }
