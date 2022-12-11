@@ -123,7 +123,7 @@ fn solve(input: &str, group_crates_when_moving: bool) -> Result<String, String> 
 
             if number_of_stacks == 0 {
                 match matches.len() {
-                    0 => return Err("Unknown format for stacks"),
+                    0 => return Err(format!("Unknown format for stacks: {}", line)),
                     other => number_of_stacks += other,
                 }
 
@@ -246,7 +246,7 @@ move 1 from 1 to 2
     fn test_part1_bad_stacks() {
         assert_eq!(
             part1(TEST_INPUT_BAD_STACKS),
-            Err("Unknown format for stacks")
+            Err("Unknown format for stacks: aaaaaaaaaaa".to_string())
         )
     }
 
