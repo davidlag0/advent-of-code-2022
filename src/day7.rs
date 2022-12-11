@@ -249,21 +249,10 @@ pub fn part2(input: &str) -> Result<String, String> {
 
         sizes_of_candidate_directories_to_delete.sort_by(|a, b| b.cmp(a));
 
-        match sizes_of_candidate_directories_to_delete.pop() {
-            Some(size) => Ok(size.to_string()),
-            /*
-            The below case is impossible because of how the problem is stated
-            and how additional_space_required_for_update is calculated above.
-            If we test edge cases such as a 0 size root directory, the above
-            calculation panics with an overflow because we get a negative number.
-            Unfortunately, code coverage doesn't seem to be able to ignore the below
-            line not being covered.
-
-            Reference to ignore lines from code coverage (not stable yet as of 2022-12-11):
-            https://doc.rust-lang.org/unstable-book/language-features/no-coverage.html
-             */
-            None => unreachable!(),
-        }
+        Ok(sizes_of_candidate_directories_to_delete
+            .pop()
+            .unwrap()
+            .to_string())
     }
 }
 
