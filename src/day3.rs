@@ -73,7 +73,7 @@ fn get_item_type_priority(item_type: &char) -> u8 {
     }
 }
 
-pub fn part1(input: &str) -> Result<String, &'static str> {
+pub fn part1(input: &str) -> Result<String, String> {
     let mut sum_of_priorities: i64 = 0;
 
     for line in input.lines() {
@@ -112,7 +112,7 @@ fn get_intersection(group: &mut Vec<HashSet<char>>) -> Option<char> {
     }
 }
 
-pub fn part2(input: &str) -> Result<String, &'static str> {
+pub fn part2(input: &str) -> Result<String, String> {
     let mut sum_of_priorities: i64 = 0;
     let mut list_of_group_item_types: Vec<HashSet<char>> = Vec::new();
 

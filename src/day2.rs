@@ -56,7 +56,7 @@ enum Outcome {
     Win = 6,
 }
 
-pub fn part1(input: &str) -> Result<String, &'static str> {
+pub fn part1(input: &str) -> Result<String, String> {
     let mut total_score: i64 = 0;
 
     for line in input.lines() {
@@ -101,7 +101,7 @@ and convert each letter to an enum value, then use the above code to convert
 back the enum value to a numeric value to be used to calculate the score.
 */
 
-pub fn part2(input: &str) -> Result<String, &'static str> {
+pub fn part2(input: &str) -> Result<String, String> {
     let mut total_score: i64 = 0;
 
     for line in input.lines() {

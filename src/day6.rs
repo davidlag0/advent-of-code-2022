@@ -75,16 +75,16 @@ fn solve(input: &str, marker_length: usize) -> usize {
     0
 }
 
-pub fn part1(input: &str) -> Result<String, &'static str> {
+pub fn part1(input: &str) -> Result<String, String> {
     match solve(input, START_OF_PACKET_MARKER_LENGTH) {
-        0 => Err("Could not solve puzzle"),
+        0 => Err("Could not solve puzzle".to_string()),
         solution => Ok(solution.to_string()),
     }
 }
 
-pub fn part2(input: &str) -> Result<String, &'static str> {
+pub fn part2(input: &str) -> Result<String, String> {
     match solve(input, START_OF_MESSAGE_MARKER_LENGTH) {
-        0 => Err("Could not solve puzzle"),
+        0 => Err("Could not solve puzzle".to_string()),
         solution => Ok(solution.to_string()),
     }
 }
@@ -137,7 +137,10 @@ mod tests {
 
     #[test]
     fn test_part1_bad_input() {
-        assert_eq!(part1(TEST_INPUT_BAD), Err("Could not solve puzzle"));
+        assert_eq!(
+            part1(TEST_INPUT_BAD),
+            Err("Could not solve puzzle".to_string())
+        );
     }
 
     #[test]
@@ -167,6 +170,9 @@ mod tests {
 
     #[test]
     fn test_part2_bad_input() {
-        assert_eq!(part2(TEST_INPUT_BAD), Err("Could not solve puzzle"));
+        assert_eq!(
+            part2(TEST_INPUT_BAD),
+            Err("Could not solve puzzle".to_string())
+        );
     }
 }

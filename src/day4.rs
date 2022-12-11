@@ -89,7 +89,7 @@ fn is_one_pair_fully_within_other_pair(sections_min_and_max: Vec<u8>) -> bool {
     }
 }
 
-pub fn part1(input: &str) -> Result<String, &'static str> {
+pub fn part1(input: &str) -> Result<String, String> {
     let mut assignment_pairs_fully_in_another: i64 = 0;
 
     for line in input.lines() {
@@ -119,7 +119,7 @@ fn is_one_pair_overlapping_other_pair(sections_min_and_max: Vec<u8>) -> bool {
         .is_some()
 }
 
-pub fn part2(input: &str) -> Result<String, &'static str> {
+pub fn part2(input: &str) -> Result<String, String> {
     let mut number_of_overlapping_pairs: i64 = 0;
 
     for line in input.lines() {

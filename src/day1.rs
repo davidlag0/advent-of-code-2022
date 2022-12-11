@@ -64,7 +64,7 @@ pub fn calculate_top_three(temporary_sum: i64, top_three: &mut Vec<i64>) -> &mut
     top_three
 }
 
-pub fn part1(input: &str) -> Result<String, &'static str> {
+pub fn part1(input: &str) -> Result<String, String> {
     let mut temporary_sum: i64 = 0;
     let mut highest_sum: i64 = 0;
 
@@ -86,7 +86,7 @@ pub fn part1(input: &str) -> Result<String, &'static str> {
     Ok(highest_sum.to_string())
 }
 
-pub fn part2(input: &str) -> Result<String, &'static str> {
+pub fn part2(input: &str) -> Result<String, String> {
     let mut temporary_sum: i64 = 0;
     let mut top_three: Vec<i64> = vec![0, 0, 0];
 

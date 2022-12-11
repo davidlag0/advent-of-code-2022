@@ -110,7 +110,7 @@ Before the rearrangement process finishes, update your simulation so that the El
 use regex::Regex;
 use std::collections::VecDeque;
 
-fn solve(input: &str, group_crates_when_moving: bool) -> Result<String, &'static str> {
+fn solve(input: &str, group_crates_when_moving: bool) -> Result<String, String> {
     let re_stacks = Regex::new(r"(?:\[|\s)(?P<crate>[A-Z]|\s)(?:\]|\s)\s?").unwrap();
     let re_move = Regex::new(r"^move\s(?P<number_of_crates_to_move>\d+)\sfrom\s(?P<from_stack>\d+)\sto\s(?P<to_stack>\d+)$").unwrap();
     let mut number_of_stacks: usize = 0;
@@ -187,11 +187,11 @@ fn solve(input: &str, group_crates_when_moving: bool) -> Result<String, &'static
     Ok(crates_at_the_top)
 }
 
-pub fn part1(input: &str) -> Result<String, &'static str> {
+pub fn part1(input: &str) -> Result<String, String> {
     solve(input, false)
 }
 
-pub fn part2(input: &str) -> Result<String, &'static str> {
+pub fn part2(input: &str) -> Result<String, String> {
     solve(input, true)
 }
 
