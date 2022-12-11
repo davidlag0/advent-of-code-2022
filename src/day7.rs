@@ -154,7 +154,6 @@ fn build_filesystem(input: &str) -> Result<HashMap<String, Directory>, String> {
     for line in input.lines() {
         let mut command = Vec::with_capacity(3);
         command.splice(.., line.split_ascii_whitespace());
-        //println!("line:{}, command:{:?}", line, command);
 
         match command[..] {
             ["$", "cd", directory] => match directory {
