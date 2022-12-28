@@ -4,6 +4,7 @@ use std::path::PathBuf;
 use std::time::Instant;
 
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -62,6 +63,8 @@ fn solve(day: u8, part: u8) -> Result<SolverFn, (u8, u8)> {
         (8, 2) => Ok(day8::part2),
         (9, 1) => Ok(day9::part1),
         (9, 2) => Ok(day9::part2),
+        (10, 1) => Ok(day10::part1),
+        (10, 2) => Ok(day10::part2),
         (_, _) => Err((day, part)),
     }
 }
